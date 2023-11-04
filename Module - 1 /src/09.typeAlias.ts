@@ -37,6 +37,16 @@
     }
 
 
+    //--- type alias for other types 
+    type userName = string  //-- string type
+    type isAdmin = boolean  //-- boolean type
+    type functionType = (num : number, num2 : number) => number ; //-- type alias for function
+
+    const addNumber : functionType = (num, num2) => {
+        return num + num2
+    }
+
+
 
 
 
