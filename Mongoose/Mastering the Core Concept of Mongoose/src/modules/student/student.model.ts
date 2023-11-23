@@ -1,4 +1,4 @@
-import { Schema, model, connect } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import {
   Guardian,
   LocalGuardian,
@@ -7,11 +7,9 @@ import {
 } from './student.interface';
 
 const userNameSchema = new Schema<Username>({
-  name: {
-    firstName: { type: String, required: true },
-    middleName: { type: String, required: true },
-    lastName: { type: String, required: true },
-  },
+  firstName: { type: String, required: true },
+  middleName: { type: String, required: true },
+  lastName: { type: String, required: true },
 });
 
 const guardianSchema = new Schema<Guardian>({
@@ -46,5 +44,4 @@ const studentSchema = new Schema<Student>({
   isActive: ['active', 'inActive'],
 });
 
-
-export const StudentModel = model<Student>('StudentModel', studentSchema) ;
+export const StudentModel = model<Student>('StudentModel', studentSchema);

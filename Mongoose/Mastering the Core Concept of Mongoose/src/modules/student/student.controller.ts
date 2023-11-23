@@ -3,10 +3,11 @@ import { StudentServices } from './student.service';
 
 const createStudent = async (req: Request, res: Response) => {
   try {
-    const student = req.body;
+    const students  = req.body.students;
+    console.log('Data from Server : ', students);
 
     // will call service function to send this data
-    const result = await StudentServices.createStudentIntoDB(student);
+    const result = await StudentServices.createStudentIntoDB(students);
 
     // send response
     res.status(200).json({
@@ -14,12 +15,11 @@ const createStudent = async (req: Request, res: Response) => {
       message: 'Student is created successfully',
       data: result,
     });
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 };
 
-
 export const StudentController = {
-    createStudent,
-}
+  createStudent,
+};
