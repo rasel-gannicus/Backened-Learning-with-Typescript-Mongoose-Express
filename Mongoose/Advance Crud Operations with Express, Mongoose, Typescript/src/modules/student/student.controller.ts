@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { StudentServices } from './student.service';
 
+// --- create a student data
 const createStudent = async (req: Request, res: Response) => {
   try {
     const students = req.body.students;
@@ -15,7 +16,11 @@ const createStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      success : false ,
+      message : 'Something Went Wrong',
+      error : err
+    })
   }
 };
 

@@ -1,4 +1,6 @@
 import { Schema, model } from 'mongoose';
+import validator from 'validator';
+
 import {
   Guardian,
   LocalGuardian,
@@ -7,9 +9,28 @@ import {
 } from './student.interface';
 
 const userNameSchema = new Schema<Username>({
-  firstName: { type: String, required: true },
+  firstName: { 
+    type: String, 
+    required: true, 
+    maxlength : [20, 'First Name cannot exceed 20 letter'] ,
+    trim : true,
+    validate : {
+      validator : function(value: string){
+        const firstNameStr = value.charAt(0).toUpperCase() + value.slice(1) ;
+        return firstNameStr === value ;
+      },
+      message : '{VALUE} is not in capitalize format'
+    }
+  },
   middleName: { type: String, required: true },
-  lastName: { type: String, required: true },
+  lastName: { 
+    type: String, 
+    required: true ,
+    validate : {
+      validator : (value : string) => validator.isAlpha(value), //-- validating using npm 'validator' package, and checking if it has any number value
+      message : '{VALUE} is not text Only type'
+    }
+  },
 });
 
 const guardianSchema = new Schema<Guardian>({
@@ -43,7 +64,14 @@ const studentSchema = new Schema<Student>({
     required : [true, 'Gender den nai bro'] ,
   },
   dateOfBirth: { type: String },
-  email: { type: String, required: true },
+  email: { 
+    type: String, 
+    required: true ,
+    validate : {
+      validator : (value : string) => validator.isEmail(value), //-- validating using npm 'validator' package, and checking if it is valid email type
+      message : 'Email is not valid'
+    }
+  },
   emergencyContactNo: { type: String, required: true },
   bloodGroup: {
     type : String,
