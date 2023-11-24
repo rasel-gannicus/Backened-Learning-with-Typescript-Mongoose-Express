@@ -72,6 +72,7 @@ const studentSchema = new Schema<Student>({
       message : 'Email is not valid'
     }
   },
+  contactNo : {type: String, required : true},
   emergencyContactNo: { type: String, required: true },
   bloodGroup: {
     type : String,
@@ -88,7 +89,7 @@ const studentSchema = new Schema<Student>({
     type : localGuardianSchema,
     required : true 
   },
-  profileImg: { type: String, required: true },
+  profileImg : { type: String },
   isActive: {
     type : String ,
     enum : ['active', 'inActive'],
