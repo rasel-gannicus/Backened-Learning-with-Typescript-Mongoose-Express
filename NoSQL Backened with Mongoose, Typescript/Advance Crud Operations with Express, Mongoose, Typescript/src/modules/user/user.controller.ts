@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
+import { UserServices } from './user.services';
 
 // --- create a student data
 const createUser = async (req: Request, res: Response) => {
   try {
-    const students = req.body.students;
-
-    const zodParsedData = studentZodValidationSchema.parse(students)
+    const {students, password} = req.body;
+    
+    console.log('Req.body : ', req.body);
 
     // will call service function to send this data
-    const result = await StudentServices.createUserIntoDB(zodParsedData);
+    const result = await UserServices.createStudentIntoDB(password,students);
 
     // send response
     res.status(200).json({
@@ -27,6 +28,6 @@ const createUser = async (req: Request, res: Response) => {
 
 
 
-export const StudentController = {
+export const UserController = {
   createUser,
 };
