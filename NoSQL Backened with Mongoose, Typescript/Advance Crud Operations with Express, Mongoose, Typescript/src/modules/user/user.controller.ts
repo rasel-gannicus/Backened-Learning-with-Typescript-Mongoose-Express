@@ -1,13 +1,13 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { UserServices } from './user.services';
 
 // --- create a student data
-const createUser = async (req: Request, res: Response) => {
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const {students, password} = req.body;
+    const { students, password } = req.body;
 
     // will call service function to send this data
-    const result = await UserServices.createStudentIntoDB(password,students);
+    const result = await UserServices.createStudentIntoDB(password, students);
 
     // send response
     res.status(200).json({
@@ -16,15 +16,9 @@ const createUser = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: 'Something Went Wrong',
-      error: err
-    })
+    next(err);
   }
 };
-
-
 
 export const UserController = {
   createUser,
