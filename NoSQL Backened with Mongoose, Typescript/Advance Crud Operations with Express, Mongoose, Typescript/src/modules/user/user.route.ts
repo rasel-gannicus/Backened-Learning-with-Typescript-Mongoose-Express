@@ -4,7 +4,7 @@ import { UserController } from './user.controller';
 const router = express.Router();
 
 // --- will call controller function
-router.post('/create-user', UserController.createUser);
+router.post('/create-student', UserController.createUser);
 
 
-export const StudentRoutes = router;
+export const UserRoutes = router;

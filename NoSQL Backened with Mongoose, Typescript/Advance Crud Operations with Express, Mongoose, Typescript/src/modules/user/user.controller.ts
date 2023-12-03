@@ -5,8 +5,6 @@ import { UserServices } from './user.services';
 const createUser = async (req: Request, res: Response) => {
   try {
     const {students, password} = req.body;
-    
-    console.log('Req.body : ', req.body);
 
     // will call service function to send this data
     const result = await UserServices.createStudentIntoDB(password,students);

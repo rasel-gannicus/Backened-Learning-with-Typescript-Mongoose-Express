@@ -3,29 +3,29 @@ import { StudentServices } from './student.service';
 import studentZodValidationSchema from './student.zod.validation';
 
 // --- create a student data
-const createStudent = async (req: Request, res: Response) => {
-  try {
-    const students = req.body.students;
+// const createStudent = async (req: Request, res: Response) => {
+//   try {
+//     const students = req.body.students;
 
-    const zodParsedData = studentZodValidationSchema.parse(students)
+//     const zodParsedData = studentZodValidationSchema.parse(students)
 
-    // will call service function to send this data
-    const result = await StudentServices.createStudentIntoDB(zodParsedData);
+//     // will call service function to send this data
+//     const result = await StudentServices.createStudentIntoDB(zodParsedData);
 
-    // send response
-    res.status(200).json({
-      success: true,
-      message: 'Student is created successfully',
-      data: result,
-    });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: 'Something Went Wrong',
-      error: err
-    })
-  }
-};
+//     // send response
+//     res.status(200).json({
+//       success: true,
+//       message: 'Student is created successfully',
+//       data: result,
+//     });
+//   } catch (err) {
+//     res.status(500).json({
+//       success: false,
+//       message: 'Something Went Wrong',
+//       error: err
+//     })
+//   }
+// };
 
 // --- get all student data
 const getAllStudentsData = async (req: Request, res: Response) => {
@@ -59,7 +59,6 @@ const getSingleStudent = async (req: Request, res: Response) => {
 };
 
 export const StudentController = {
-  createStudent,
   getAllStudentsData,
   getSingleStudent
 };
