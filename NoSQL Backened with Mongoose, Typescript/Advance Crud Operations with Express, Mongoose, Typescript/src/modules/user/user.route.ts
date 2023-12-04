@@ -7,8 +7,11 @@ const router = express.Router();
 
 // --- creating middleware
 const validateRequest = (schema : AnyZodObject) => {
-    return  (req : Request, res: Response, next : NextFunction) => {
+    return  async (req : Request, res: Response, next : NextFunction) => {
         console.log('This is middleware');
+        await schema.parseAsync({
+            body : req.body 
+        })
         next();
       };
 }
