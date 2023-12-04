@@ -3,6 +3,7 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { StudentRoutes } from '../modules/student/student.route';
 import { UserRoutes } from '../modules/user/user.route';
+import router from './routes';
 
 const app: Application = express();
 
@@ -12,7 +13,8 @@ app.use(cors());
 
 // --- using router
 // app.use('/api/v1/students', StudentRoutes);
-app.use('/api/v1/users', UserRoutes);
+// app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1',router) ; 
 
 // --- global error handler
 app.use((err : any, req : Request, res: Response)=>{
