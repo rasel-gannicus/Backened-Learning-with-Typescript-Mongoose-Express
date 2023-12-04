@@ -2,6 +2,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import router from './routes';
+import globalErrorHandler from './utils/globalErrorHandler';
 
 const app: Application = express();
 
@@ -15,14 +16,7 @@ app.use(cors());
 app.use('/api/v1',router) ; 
 
 // --- global error handler
-app.use((err : any, req : Request, res: Response)=>{
-  const message = err.message || 'Something Went Wrong' ;
-  return res.status(500).json({
-    success : false,
-    message : message, 
-    error : err 
-  })
-})
+app.use(globalErrorHandler)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
