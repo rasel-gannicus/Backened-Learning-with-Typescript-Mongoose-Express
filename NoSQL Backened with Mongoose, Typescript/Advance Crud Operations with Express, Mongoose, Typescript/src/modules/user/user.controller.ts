@@ -1,9 +1,15 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { UserServices } from './user.services';
 
+const catchAsync = (fn : RequestHandler) => {
+  return (req : Request, res : Response, next : NextFunction) => {
+    Promise.resolve(fn(req, res, next)).catch((err)=> next(err)) ;
+  } 
+}
+
 // --- create a student data
-const createUser = async (req: Request, res: Response, next: NextFunction) => {
-  try {
+const createUser = catchAsync(async (req, res, next) => {
+
     const { students, password } = req.body;
 
     // will call service function to send this data
@@ -15,10 +21,8 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
       message: 'Student is created successfully',
       data: result,
     });
-  } catch (err) {
-    next(err);
-  }
-};
+
+})
 
 export const UserController = {
   createUser,
