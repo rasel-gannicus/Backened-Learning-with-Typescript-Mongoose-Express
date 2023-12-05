@@ -8,7 +8,7 @@ const validateRequest = (schema: AnyZodObject) => {
       //   console.log(req.body);
       // --- checking validation
       await schema.parseAsync({
-        body: req.body.students,
+        body: req.body,
       });
       next();
     } catch (err) {

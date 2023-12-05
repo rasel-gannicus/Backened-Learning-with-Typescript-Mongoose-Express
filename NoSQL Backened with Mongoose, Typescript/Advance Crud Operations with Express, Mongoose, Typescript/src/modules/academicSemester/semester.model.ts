@@ -10,7 +10,7 @@ export const semesterSchema = new Schema<TAcademicSemester>(
   {
     name: { type: String, enum: semesterNameSchema, required: true },
     code: { type: String, enum: semesterCodeSchema, required: true },
-    year: { type: Date, required: true },
+    year: { type: String, required: true },
     startMonth: { type: String, enum: months, required: true },
     endMonth: { type: String, enum: months, required: true },
   },
