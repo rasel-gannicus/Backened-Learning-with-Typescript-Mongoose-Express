@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const userNameZodValidationSchema = z.object({
-  firstName: z.string()  ,
+  firstName: z.string(),
   middleName: z.string(),
   lastName: z.string().refine((value) => /^[A-Za-z]+$/.test(value), {
     message: 'Last Name must contain only letters.',
@@ -25,20 +25,22 @@ const localGuardianZodValidationSchema = z.object({
 });
 
 const studentZodValidationSchema = z.object({
-  body : z.object({
-    name: userNameZodValidationSchema,
-    gender: z.enum(['male', 'female', 'other']),
-    dateOfBirth: z.string(),
-    email: z.string().email(),
-    contactNo : z.string(),
-    emergencyContactNo: z.string(),
-    bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
-    presentAddress: z.string(),
-    parmanentAddress: z.string(),
-    guardian: guardianZodValidationSchema,
-    localGuardian: localGuardianZodValidationSchema,
-    profileImg: z.string(),
-  })
+  body: z.object({
+    students: z.object({
+      name: userNameZodValidationSchema,
+      gender: z.enum(['male', 'female', 'other']),
+      dateOfBirth: z.string(),
+      email: z.string().email(),
+      contactNo: z.string(),
+      emergencyContactNo: z.string(),
+      bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
+      presentAddress: z.string(),
+      parmanentAddress: z.string(),
+      guardian: guardianZodValidationSchema,
+      localGuardian: localGuardianZodValidationSchema,
+      profileImg: z.string(),
+    }),
+  }),
 });
 
 export default studentZodValidationSchema;

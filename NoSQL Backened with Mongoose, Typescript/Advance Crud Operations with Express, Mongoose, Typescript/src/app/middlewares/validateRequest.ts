@@ -5,7 +5,6 @@ import { AnyZodObject } from 'zod';
 const validateRequest = (schema: AnyZodObject) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      //   console.log(req.body);
       // --- checking validation
       await schema.parseAsync({
         body: req.body,
