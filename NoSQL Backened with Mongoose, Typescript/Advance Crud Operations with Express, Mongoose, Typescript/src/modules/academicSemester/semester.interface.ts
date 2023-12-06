@@ -23,3 +23,9 @@ export type TAcademicSemester = {
   startMonth: TMonth;
   endMonth: TMonth;
 };
+
+
+// --- this 'type' is for checking if the semester code is valid with name
+export type TSemesterCodeWithNameMapper = {
+  [key: string]: string;
+};

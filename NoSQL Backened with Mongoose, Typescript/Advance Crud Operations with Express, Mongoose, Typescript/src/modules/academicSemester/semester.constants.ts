@@ -1,4 +1,4 @@
-import { TMonth, TSemesterCode, TSemesterName } from './semester.interface';
+import { TMonth, TSemesterCode, TSemesterCodeWithNameMapper, TSemesterName } from './semester.interface';
 
 export const semesterNameSchema: TSemesterName[] = ['Autumn', 'Summar', 'Fall'];
 
@@ -18,3 +18,11 @@ export const months: TMonth[] = [
   'November',
   'December',
 ];
+
+
+// --- this 'const' is for checking if the semester code is valid with name
+export const SemesterCodeWithNameMapper: TSemesterCodeWithNameMapper = {
+  Autumn: '01',
+  Summer: '02',
+  Fall: '03',
+};

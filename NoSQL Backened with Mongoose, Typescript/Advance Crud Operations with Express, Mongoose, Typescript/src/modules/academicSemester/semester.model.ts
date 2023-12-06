@@ -1,10 +1,10 @@
 import { Schema, model } from 'mongoose';
+import { TAcademicSemester } from './semester.interface';
 import {
-  TAcademicSemester
-} from './semester.interface';
-import { months, semesterCodeSchema, semesterNameSchema } from './semester.constants';
-
-
+  months,
+  semesterCodeSchema,
+  semesterNameSchema,
+} from './semester.constants';
 
 export const semesterSchema = new Schema<TAcademicSemester>(
   {
@@ -19,5 +19,19 @@ export const semesterSchema = new Schema<TAcademicSemester>(
   },
 );
 
+// --- this middlware will prevent creating duplicate semester in same year
+semesterSchema.pre('save', async function (next) {
+  const isSemesterExists = await SemesterModel.findOne({
+    year: this.year,
+    name: this.name,
+  });
+  if (isSemesterExists) {
+    throw new Error('Semester already exists !');
+  }
+  next();
+});
 
-export const SemesterModel = model <TAcademicSemester>('Semister', semesterSchema);
+export const SemesterModel = model<TAcademicSemester>(
+  'Semester',
+  semesterSchema,
+);
