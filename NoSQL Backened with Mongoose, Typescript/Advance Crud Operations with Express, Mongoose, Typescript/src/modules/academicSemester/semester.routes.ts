@@ -5,7 +5,20 @@ import { SemesterZodValidation } from './semester.zod.validations';
 
 const router = express.Router();
 
-router.post('/create-academic-semester', validateRequest(SemesterZodValidation.SemesterZodValidationSchema), SemesterController.createSemester); 
+// --- create semester into db
+router.post(
+  '/create-academic-semester',
+  validateRequest(SemesterZodValidation.SemesterZodValidationSchema),
+  SemesterController.createSemester,
+);
 
+// --- get all the semester from db
+router.get('/get-all-semester', SemesterController.getAllSemester);
 
-export const SemesterRoutes = router ; 
+// --- find single semester with semester id
+router.get('/:semesterId', SemesterController.getSingleSemester);
+
+// --- update a semester
+router.patch('/:semesterId', SemesterController.updateSemester)
+
+export const SemesterRoutes = router;
