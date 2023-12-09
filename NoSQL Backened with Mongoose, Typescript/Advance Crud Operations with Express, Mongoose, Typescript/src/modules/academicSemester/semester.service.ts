@@ -29,8 +29,9 @@ const getSingleSemester = async (payload: string) => {
 // --- update a semester
 const updateSemester = async (semesterId: string, updatedDoc : any) => {
     const result = await SemesterModel.findByIdAndUpdate(semesterId,updatedDoc) ; 
-    
-    return result ; 
+    const result2 = await SemesterModel.findById(semesterId) ; 
+    // console.log(result2);
+    return result2 ; 
 };
 
 export const SemesterServices = {

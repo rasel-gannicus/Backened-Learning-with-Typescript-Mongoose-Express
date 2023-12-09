@@ -19,6 +19,10 @@ router.get('/get-all-semester', SemesterController.getAllSemester);
 router.get('/:semesterId', SemesterController.getSingleSemester);
 
 // --- update a semester
-router.patch('/:semesterId', SemesterController.updateSemester)
+router.patch(
+  '/:semesterId',
+  validateRequest(SemesterZodValidation.updateSemesterZodValidationSchema),
+  SemesterController.updateSemester,
+);
 
 export const SemesterRoutes = router;
