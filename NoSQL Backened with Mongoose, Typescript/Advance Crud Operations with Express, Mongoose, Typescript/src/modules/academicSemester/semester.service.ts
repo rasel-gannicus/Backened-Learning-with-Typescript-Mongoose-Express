@@ -22,6 +22,7 @@ const getAllSemester = async () => {
 
 // --- find single semester with semester id
 const getSingleSemester = async (payload: string) => {
+  console.log(payload);
   const result = await SemesterModel.findById(payload);
   return result;
 };

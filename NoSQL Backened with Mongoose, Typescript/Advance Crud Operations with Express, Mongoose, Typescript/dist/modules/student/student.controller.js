@@ -14,7 +14,6 @@ const student_service_1 = require("./student.service");
 const createStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { student: studentData } = req.body.students;
-        console.log('Data from Server', studentData);
         // will call service function to send this data
         const result = yield student_service_1.StudentServices.createStudentIntoDB(studentData);
         // send response
