@@ -1,0 +1,8 @@
+<<<<<<< HEAD
+.DS_Store
+.vscode/settings.json
+=======
+node_modules
+dist
+.env
+>>>>>>> 61efa84 (adding to new branch)
