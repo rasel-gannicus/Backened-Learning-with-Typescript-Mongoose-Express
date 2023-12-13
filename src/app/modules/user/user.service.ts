@@ -16,7 +16,6 @@ const createStudentIntoDB = async (password: string, payload: TStudent) => {
   //if password is not given , use deafult password
   userData.password = password || (config.default_password as string);
 
-  console.log('From User Service : ',userData.password);
   //set student role
   userData.role = 'student';
 
