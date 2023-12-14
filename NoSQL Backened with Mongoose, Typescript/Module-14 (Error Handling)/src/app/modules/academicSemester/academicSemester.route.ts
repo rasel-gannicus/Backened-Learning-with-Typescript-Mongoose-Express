@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post(
   '/create-academic-semester',
-  validateRequest(
-    AcademicSemesterValidations.createAcdemicSemesterValidationSchema,
-  ),
+  // validateRequest(
+  //   AcademicSemesterValidations.createAcdemicSemesterValidationSchema,
+  // ),
   AcademicSemesterControllers.createAcademicSemester,
 );
 
