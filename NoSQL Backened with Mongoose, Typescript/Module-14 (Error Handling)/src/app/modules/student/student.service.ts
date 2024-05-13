@@ -8,15 +8,13 @@ import { Student } from './student.model';
 const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   let searchItem: string = '';
   const queryObj = { ...query };
-  console.log(queryObj);
 
-  const excludeFields = ['searchItem', 'sort', 'limit'];
+  const excludeFields = ['searchItem', 'sort', 'limit', 'page', 'fields'];
   excludeFields.forEach((elem) => delete queryObj[elem]);
 
   if (query?.searchItem) {
     searchItem = query.searchItem as string;
   }
-  console.log(query);
   const studentSearchableFields = [
     'email',
     'name.firstName',
@@ -41,19 +39,33 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
     });
   let sort = '-createdAt';
 
-  if(query.sort){
-    sort = query.sort as string ; 
+  if (query.sort) {
+    sort = query.sort as string;
   }
-  const sortQuery = filterQuery.sort(sort) ; 
+  const sortQuery = filterQuery.sort(sort);
 
   // --- limiting the result quantity
-  let limit = 1 ; 
-  if(query.limit){
-    limit = query.limit as number;
-  }
-  const limitQuery = await sortQuery.limit(limit) ; 
+  let limit = 1;
+  let skip = 0;
+  let page = 1;
 
-  return limitQuery;
+  if (query.limit) {
+    limit = Number(query.limit) as number;
+  }
+  if (query.page) {
+    page = Number(query.page);
+    skip = (page - 1) * limit;
+  }
+  const paginateQuery = sortQuery.skip(skip);
+  const limitQuery = paginateQuery.limit(limit);
+
+  let fields = '__v' ; 
+  if(query.fields){
+    fields = (query.fields as string).split(',').join(' ') ; 
+  }
+  const fieldQuery = limitQuery.select(fields) ;
+
+  return fieldQuery;
 };
 
 const getSingleStudentFromDB = async (id: string) => {

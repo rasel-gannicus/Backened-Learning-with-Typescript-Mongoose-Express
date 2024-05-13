@@ -8,7 +8,7 @@ import globalErrorHandler from './app/middlewares/globalErrorhandler';
 import notFound from './app/middlewares/notFound';
 import router from './app/routes';
 
-const app: Application = express();
+const app: Application = express(); 
 
 //parsers
 app.use(express.json());
@@ -24,9 +24,10 @@ const test = (req: Request, res: Response) => {
 
 app.get('/', test);
 
+// --- middleware for error handler
 app.use(globalErrorHandler);
 
-//Not Found
+// --- 'Not Found' Middleware
 app.use(notFound);
 
 export default app;
