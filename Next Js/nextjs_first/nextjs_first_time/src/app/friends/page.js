@@ -1,10 +1,9 @@
 import React from 'react';
 
 const Friends = () => {
-    console.log('friend here');
     return (
         <div>
-            <h2>All Friends here</h2>
+            <h2>Friends Here </h2>
         </div>
     );
 };

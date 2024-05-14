@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CatchAllRoutes = () => {
+const CatchAllRoute = () => {
     return (
         <div>
-            <h2>Catch all route here</h2>
+            <h2>Catch All Route here</h2>
         </div>
     );
 };
 
-export default CatchAllRoutes;
+export default CatchAllRoute;
