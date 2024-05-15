@@ -1,11 +1,14 @@
+"use client"
+import { TBlog } from "@/types/blogType";
 import Image from "next/image";
 import Link from "next/link";
 import { AiFillLike } from "react-icons/ai";
 import { FaCalendar } from "react-icons/fa";
 
-const LatestBlogCard = ({ blog }) => {
+const LatestBlogCard = ( blog : TBlog) => {
+  console.log(blog);
   return (
-    <div key={blog.id} className="card w-full bg-base-100 shadow-xl">
+    <div key={blog.id} className="card max-w-96 mx-auto bg-base-100 shadow-xl">
       <figure>
         <Image
           src={blog.blog_image}
@@ -22,7 +25,7 @@ const LatestBlogCard = ({ blog }) => {
         </p>
         <h2 className="card-title">{blog.title}</h2>
         <p className="text-gray-500">
-          {blog.description.length > 100
+          {blog?.description?.length > 100
             ? blog.description.slice(0, 180) + "..."
             : blog.description}
           <Link href={`/blogs/${blog.id}`} className="text-accent">
@@ -33,7 +36,7 @@ const LatestBlogCard = ({ blog }) => {
           <div className="avatar items-center">
             <div className="w-8 mr-1 rounded-full">
               <Image
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                src="https://lh3.googleusercontent.com/a/ACg8ocI2OV-cZAlNUWjbblbOKXa0fKt1lMukogKdaedBNdwiwdoKnKVj=s360-c-no"
                 width={100}
                 height={100}
                 alt="author image"
