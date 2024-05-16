@@ -1,4 +1,5 @@
 "use client";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -9,6 +10,9 @@ type FormValues = {
 };
 
 const LoginPage = () => {
+
+console.log(process.env.GITHUB_ID);
+console.log(process.env.GITHUB_SECRET);
   const {
     register,
     handleSubmit,
@@ -85,7 +89,9 @@ const LoginPage = () => {
                 alt="google logo"
               />
             </button>
-            <button className="btn btn-circle">
+            <button onClick={() => signIn("github",{
+              callbackUrl : "http://localhost:3000/dashboard"
+            }) } className="btn btn-circle">
               <Image
                 src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
                 width={35}
