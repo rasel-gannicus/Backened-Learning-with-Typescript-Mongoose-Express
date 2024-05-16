@@ -1,4 +1,3 @@
-"use client"
 import { TBlog } from "@/types/blogType";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +5,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FaCalendar } from "react-icons/fa";
 
 const LatestBlogCard = ( blog : TBlog) => {
-  console.log(blog);
+  // console.log(blog);
   return (
     <div key={blog.id} className="card max-w-96 mx-auto bg-base-100 shadow-xl">
       <figure>

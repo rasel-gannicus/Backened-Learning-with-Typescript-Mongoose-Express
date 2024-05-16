@@ -1,9 +1,11 @@
+import { TBlog } from "@/types/blogType";
 import Image from "next/image";
 import Link from "next/link";
 import { AiFillLike } from "react-icons/ai";
 import { FaCalendar } from "react-icons/fa";
 
-const BlogCard = ({ blog }) => {
+const BlogCard = (blog : TBlog) => {
+  console.log(blog);
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <figure>
@@ -37,7 +39,7 @@ const BlogCard = ({ blog }) => {
           <div className="avatar items-center">
             <div className="w-8 mr-1 rounded-full">
               <Image
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                src="https://lh3.googleusercontent.com/a/ACg8ocI2OV-cZAlNUWjbblbOKXa0fKt1lMukogKdaedBNdwiwdoKnKVj=s360-c-no"
                 width={100}
                 height={100}
                 alt="author image"
