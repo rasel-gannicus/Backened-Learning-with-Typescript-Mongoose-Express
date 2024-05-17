@@ -1,6 +1,14 @@
 import Link from "next/link";
 
-const Navbar = () => {
+export interface TSession {
+  user : {
+    name ?: string | null | undefined 
+    email ?: string | null | undefined 
+    image ?: string | null | undefined 
+  }
+}
+
+const Navbar = (session : TSession) => {
   return (
     <div className="navbar bg-base-100  border-b  w-[90%] mx-auto">
       <div className="navbar-start">

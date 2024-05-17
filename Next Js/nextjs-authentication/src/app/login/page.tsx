@@ -11,8 +11,8 @@ type FormValues = {
 
 const LoginPage = () => {
 
-console.log(process.env.GITHUB_ID);
-console.log(process.env.GITHUB_SECRET);
+// console.log(process.env.GITHUB_ID);
+// console.log(process.env.GITHUB_SECRET);
   const {
     register,
     handleSubmit,
